@@ -124,8 +124,8 @@ docker-compose.yml
 ```yml
 services:
   backupsystem-jellyfin-camera:
-    env_file:
-      - stack.env
+    env_file: 
+      - ./.env
     image: jellyfin/jellyfin
     container_name: backupsystem-jellyfin-camera
     environment:
@@ -137,7 +137,7 @@ services:
       - ./jellycache:/cache
       - type: bind
         source: ${CAMERA_PATH}
-        target: /media
+        target: /media/camera
         bind:
           create_host_path: true
     restart: unless-stopped
@@ -147,7 +147,7 @@ services:
       #- ${JELLYFIN_DISCOVERY_PORT}:7359/udp
       #- ${JELLYFIN_DLNA_PORT}:1900/udp
 ```
-stack.env
+.env
 ```sh
 # User and Group IDs
 PUID=1010

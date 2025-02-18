@@ -3,6 +3,9 @@
 ## Why not nextcloud?
 - Its cumbersome, and sometimes break.
 
+## Docker Compose files:
+- [Only Jellyfin](./compose_jellyfin_only/docker-compose.yml)
+
 ## Features:
 - accesible from TV (via jellyfin)
 - Easy upload from PC (via SMB)
