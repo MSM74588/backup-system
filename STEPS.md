@@ -169,6 +169,7 @@ JELLYFIN_PORT=8090
 ```bash
 # Create directories
 mkdir -p jellyconfig jellycache
+mkdir -p immich
 
 # Set proper permissions
 sudo chown -R $USER:shared_access jellyconfig jellycache
