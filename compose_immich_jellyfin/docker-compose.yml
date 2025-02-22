@@ -41,6 +41,8 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
+      - IMMICH_PORT=${IMMICH_PORT}
+      - IMMICH_HOST=0.0.0.0
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -68,7 +70,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
     volumes:
-      - model-cache:/cache
+      - ${MODEL_CACHE_LOCATION}:/cache
     env_file:
       - .env
     restart: always
@@ -116,6 +118,3 @@ services:
       -c shared_buffers=512MB
       -c wal_compression=on
     restart: always
-
-volumes:
-  model-cache:
