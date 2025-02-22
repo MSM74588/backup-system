@@ -265,3 +265,15 @@ sudo docker compose up -d
 ```
 msm (you) → runs Docker → Container runs internally as UID 1500:1500
 ```
+
+## Creating the Samba Share Step-by-step
+1. Create the Shared Folder
+2. ACL > Owner --> Set owner to `mediauser` & Group to `shared_access` (if containig file, check `Recursive`)
+3. make sure `msm` (original user, root) is added to group `shared_access` so samba can create files
+4. give `msm` -> read/write under `ACL` (for `samba`) 
+4. Make Samba Share. 
+
+# NOTE (permission)
+-  if copying files manually, like via `rsync` or via using `cp`, always make sure the permission is `mediauser:shared_access` so the docker can access the files via nfs
+    - checking permission > `ls -la`
+    - changing permssion > `sudo chown -R mediauser:shared_access <folderName>` or `*` (`-R` for recursive) (can just use `mediauser`)
