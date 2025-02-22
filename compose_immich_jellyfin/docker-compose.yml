@@ -42,7 +42,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - IMMICH_PORT=${IMMICH_PORT}
-      - IMMICH_HOST=0.0.0.0
+      # - IMMICH_HOST=0.0.0.0
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
