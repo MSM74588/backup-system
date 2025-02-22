@@ -36,3 +36,8 @@ On Docker Host:
 ## A note:
 - If a folder is missing, for example `music` folder has not yet been created on the nfs mount, starting docker will be unable to autocreate that folder, as the the Host OS user has no permission to create the folder, but the container inside can, since it has the necessary permission. i passed uid, gid to that.
 - So just manually create the folder, and `change the ownership`
+
+- (OR)
+- just add no_root_squash (to nfs)
+
+![rootsq](./images/Screenshot%20from%202025-02-23%2004-18-50.png)
