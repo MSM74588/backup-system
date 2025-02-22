@@ -173,6 +173,10 @@ mkdir -p jellyconfig jellycache
 # Set proper permissions
 sudo chown -R $USER:shared_access jellyconfig jellycache
 sudo chmod -R 775 jellyconfig jellycache
+
+# For immich
+sudo chown -R $USER:shared_access immich
+sudo chmod -R 775 immich
 ```
 ```bash
 # Check permissions on media directory
