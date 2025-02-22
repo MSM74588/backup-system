@@ -32,3 +32,7 @@ On Docker Host:
 
 
 ![diagram](./images/diagram-export-11-2-2025-10_18_12-am.svg)
+
+## A note:
+- If a folder is missing, for example `music` folder has not yet been created on the nfs mount, starting docker will be unable to autocreate that folder, as the the Host OS user has no permission to create the folder, but the container inside can, since it has the necessary permission. i passed uid, gid to that.
+- So just manually create the folder, and `change the ownership`
