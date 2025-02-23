@@ -38,7 +38,7 @@ services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    user: "${PUID}:${PGID}"
+    # user: "${PUID}:${PGID}"
 
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -63,7 +63,7 @@ services:
   immich-machine-learning:
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
-    user: "${PUID}:${PGID}"
+    # user: "${PUID}:${PGID}"
 
     volumes:
       - ${MODEL_CACHE_LOCATION}:/cache

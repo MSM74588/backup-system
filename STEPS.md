@@ -284,3 +284,6 @@ msm (you) → runs Docker → Container runs internally as UID 1500:1500
 -  if copying files manually, like via `rsync` or via using `cp`, always make sure the permission is `mediauser:shared_access` so the docker can access the files via nfs
     - checking permission > `ls -la`
     - changing permssion > `sudo chown -R mediauser:shared_access <folderName>` or `*` (`-R` for recursive) (can just use `mediauser`)
+
+# Note for immich
+- in nfs add `no_root_squash`, so immich can run as root, there are many issues
