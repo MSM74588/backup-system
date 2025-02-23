@@ -287,3 +287,5 @@ msm (you) → runs Docker → Container runs internally as UID 1500:1500
 
 # Note for immich
 - in nfs add `no_root_squash`, so immich can run as root, there are many issues
+- Also change the permission of the `folder` mapped to `UPLOAD_LOCATION` to root:root
+- change `folder` mapped to `UPLOAD_LOCATION` to allow 777 rwx permission for all `sudo chmod -R 777 /immich`
