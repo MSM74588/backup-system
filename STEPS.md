@@ -169,7 +169,7 @@ JELLYFIN_PORT=8090
 ```bash
 # Create directories
 mkdir -p jellyconfig jellycache
-mkdir -p immich
+mkdir -p immich/database immich/model_cache
 
 # Set proper permissions
 sudo chown -R $USER:shared_access jellyconfig jellycache
@@ -177,7 +177,7 @@ sudo chmod -R 775 jellyconfig jellycache
 
 # For immich
 sudo chown -R $USER:shared_access immich
-sudo chmod -R 775 immich
+sudo chmod -R 775 immich/database immich/model_cache
 ```
 ```bash
 # Check permissions on media directory
