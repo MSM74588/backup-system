@@ -38,11 +38,8 @@ services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - IMMICH_PORT=${IMMICH_PORT}
-      # - IMMICH_HOST=0.0.0.0
+    user: "${PUID}:${PGID}"
+
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -66,9 +63,8 @@ services:
   immich-machine-learning:
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+    user: "${PUID}:${PGID}"
+
     volumes:
       - ${MODEL_CACHE_LOCATION}:/cache
     env_file:
@@ -80,9 +76,8 @@ services:
   redis:
     container_name: immich_redis
     image: docker.io/redis:6.2-alpine@sha256:905c4ee67b8e0aa955331960d2aa745781e6bd89afc44a8584bfd13bc890f0ae
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
+    user: "${PUID}:${PGID}"
+
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
@@ -90,9 +85,8 @@ services:
   database:
     container_name: immich_postgres
     image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    user: "${PUID}:${PGID}"
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_DB=${DB_DATABASE_NAME}
