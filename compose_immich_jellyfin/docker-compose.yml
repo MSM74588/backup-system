@@ -1,5 +1,7 @@
 name: backup_media_system
 
+# IMMICH API KEY NEEDED, GET IT AFTER SETTING IT UP
+
 services:
   backupsystem-jellyfin-camera:
     env_file: 
@@ -112,3 +114,26 @@ services:
       -c shared_buffers=512MB
       -c wal_compression=on
     restart: always
+
+  # AUTO IMMICH ALBUM GENERATOR
+  # https://github.com/Salvoxia/immich-folder-album-creator?tab=readme-ov-file 
+  immich-folder-album-creator:
+    container_name: immich_folder_album_creator
+    image: salvoxia/immich-folder-album-creator:latest
+    restart: unless-stopped
+    environment:
+      API_URL: http://immich_server:2283/api
+      API_KEY: ${IMMICH_API_KEY}
+      ROOT_PATH: /pc/screenshots
+      ALBUM_LEVELS: 1
+      ALBUM_SEPARATOR: ""
+      # backslashes must be escaped in YAML
+      ALBUM_NAME_POST_REGEX1: "'[\\d]+_|\\d+\\s\\w{3}'"
+      ALBUM_NAME_POST_REGEX2: "'_' ' '"
+      LOG_LEVEL: DEBUG
+      CRON_EXPRESSION: "0 */6 * * *"
+      TZ: Asia/Kolkata
+      # Hide the photos from Photos view
+      # https://github.com/Salvoxia/immich-folder-album-creator?tab=readme-ov-file#automatic-archiving
+      ARCHIVE: "true"
+      FIND_ARCHIVED_ASSETS: "true"
